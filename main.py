@@ -1,7 +1,6 @@
 import tkinter 
 from tkinter import *
 from PIL import Image, ImageTk
-from reportlab.graphics.shapes import test
 
 def kartaA():
     print("Karta katalogowa produktu")
@@ -15,7 +14,31 @@ def donothing():
     button = Button(filewin, text="Nic nie robi...")
     button.pack()
 
+tab_Ogolne = []
+tab_Swietlne = []
+tab_Elektryczne = []
+tab_Pozostale = []
+tab_Mechaniczne = []
+
+def cleeenzaps():
+    lo = len(tab_Ogolne)
+    ls = len(tab_Swietlne)
+    lp = len(tab_Pozostale)
+    le = len(tab_Elektryczne)
+    lm = len(tab_Mechaniczne)
+    if lo > 0:
+        tab_Ogolne.clear()
+    if ls > 0:
+        tab_Swietlne.clear()
+    if lp > 0:
+        tab_Pozostale.clear()
+    if le > 0:
+        tab_Elektryczne.clear()
+    if lm > 0:
+        tab_Mechaniczne.clear()
+
 def zapisz_zebrane_dane():
+    cleeenzaps()
     tab_Ogolne.append(l_E12.get())
     tab_Ogolne.append(l_E13.get())
     tab_Ogolne.append(l_E14.get())
@@ -27,18 +50,29 @@ def zapisz_zebrane_dane():
     tab_Ogolne.append(l_E21.get())
     tab_Ogolne.append(l_E22.get())
     tab_Ogolne.append(l_E23.get())
+    print("OGOLNE")
     print(tab_Ogolne)
+    tab_Elektryczne.append(l_E25.get())
+    tab_Elektryczne.append(l_E26.get())
+    print("elektryczne")
+    print(tab_Elektryczne)
+    tab_Swietlne.append(p_E14.get())
+    tab_Swietlne.append(p_E14.get())
+    tab_Swietlne.append(p_E15.get())
+    tab_Swietlne.append(p_E16.get())
+    tab_Swietlne.append(p_E17.get())
+    tab_Swietlne.append(p_E18.get())
+    tab_Swietlne.append(p_E19.get())
+    tab_Swietlne.append(p_E20.get())
+    print("Swietlne")
+    print(tab_Swietlne)
 
 def pokazSchemat():
     schem = Toplevel(okno)
     lab=Label(schem, text=tab_Ogolne)
     lab.pack()
 
-tab_Ogolne = []
-tab_Swietlne = []
-tab_Elektryczne = []
-tab_Pozostale = []
-tab_Mechaniczne = []
+
 
 okno = tkinter.Tk()
 okno.geometry("1200x600")
@@ -87,8 +121,8 @@ var = StringVar()
 #scrollbar = Scrollbar(okno)
 #scrollbar.pack( side = RIGHT, fill = Y )
 def sel():
-  selection = " " + str(var.get())
-  label.config(text = selection)
+       selection = " " + str(var.get())
+       label.config(text = selection)
 
 
 teksty=["Zastosowanie","Cechy produktu","Zdjęcie","Rys. techniczny","Krzywa rozsyłu","Nagłówek","Produkt","Rodzina","Parametry"]
