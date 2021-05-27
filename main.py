@@ -19,6 +19,13 @@ tab_Swietlne = []
 tab_Elektryczne = []
 tab_Pozostale = []
 tab_Mechaniczne = []
+tab_Parametry_Ogolne = ["Kod produktu","Kod rodziny produktu","Kod barwy","Wbudowany zasilacz","Producent zasilacza","Sterowanie","Klasa ochronności","Stopień ochrony","Odporność na uderzenia","Kolor","Producent źródeł światła","Ilość źródeł światła "]
+tab_Parametry_Elektryczne =["Napięcie znamionowe","Częstotliwość sieciowa "]
+tab_Parametry_Swietlne=["Moc znamionowa","Strumień świetlny oprawy","Wydajność oprawy","CRI/Ra","Temperatura barwowa","Barwa światła","Kąt rozsyłu"]
+tab_Parametry_Pozostale = ["Waga","Żywotność","Żywotność L90B10","Żywotność L80B10","Żywotność L70B10","Sposób montażu ","Zakres temp. otoczenia "]
+tab_Parametry_Mechaniczne=["Materiał obudowy","Materiał klosza","Wymiary (A x B x C mm)","Wymiary (Ø x D mm)"]
+tab_nazw_Entry = []
+
 
 def cleeenzaps():
     lo = len(tab_Ogolne)
@@ -36,38 +43,13 @@ def cleeenzaps():
         tab_Elektryczne.clear()
     if lm > 0:
         tab_Mechaniczne.clear()
-"""
-def zapisz_zebrane_dane():
-    cleeenzaps()
-    tab_Ogolne.append(l_E12.get())
-    tab_Ogolne.append(l_E13.get())
-    tab_Ogolne.append(l_E14.get())
-    tab_Ogolne.append(l_E16.get())
-    tab_Ogolne.append(l_E17.get())
-    tab_Ogolne.append(l_E18.get())
-    tab_Ogolne.append(l_E19.get())
-    tab_Ogolne.append(l_E20.get())
-    tab_Ogolne.append(l_E21.get())
-    tab_Ogolne.append(l_E22.get())
-    tab_Ogolne.append(l_E23.get())
-    print("OGOLNE")
+
+# do poprawy, niestety...
+def zapis_Dane():
+    for x in tab_nazw_Entry:
+        tab_Ogolne.append(tab_nazw_Entry(x).get())
     print(tab_Ogolne)
-    tab_Elektryczne.append(l_E25.get())
-    tab_Elektryczne.append(l_E26.get())
-    print("elektryczne")
-    print(tab_Elektryczne)
-    tab_Swietlne.append(p_E14.get())
-    tab_Swietlne.append(p_E14.get())
-    tab_Swietlne.append(p_E15.get())
-    tab_Swietlne.append(p_E16.get())
-    tab_Swietlne.append(p_E17.get())
-    tab_Swietlne.append(p_E18.get())
-    tab_Swietlne.append(p_E19.get())
-    tab_Swietlne.append(p_E20.get())
-    print("Swietlne")
-    print(tab_Swietlne)
-    tab_Pozostale.append()
-"""
+
 def pokazSchemat():
     schem = Toplevel(okno)
     lab=Label(schem, text=tab_Ogolne)
@@ -91,6 +73,7 @@ def automatyczna_PozycjaWTabeli(strona,numer_pozycji,tekst,wsad_wejsciowy,pozycj
     print(starLabel)
     starEntry =st + "_E"+str(nr)
     print(starEntry)
+    tab_nazw_Entry.append(starEntry)
     starLabel = Label(root, text=tx)
     xx = pzS_X # +x_plus
     yy = pzS_Y+y_plus
@@ -99,8 +82,8 @@ def automatyczna_PozycjaWTabeli(strona,numer_pozycji,tekst,wsad_wejsciowy,pozycj
     starEntry.insert(0,ws)
     xxx=xx+przez
     starEntry.place(x=xxx,y=yy)
-    print("Label")
-    print("Entry")
+    #print("Label")
+    #print("Entry")
 
 okno = tkinter.Tk()
 okno.geometry("1200x800")
@@ -230,7 +213,7 @@ o_L10.place(x = 510, y = 50)
 l_L11 = Label(okno,text = "Ogólne", fg="green" ,relief = GROOVE)
 l_L11.place(x = 450, y = 70)
 
-tab_Parametry_Ogolne = ["Kod produktu","Kod rodziny produktu","Kod barwy","Wbudowany zasilacz","Producent zasilacza","Sterowanie","Klasa ochronności","Stopień ochrony","Odporność na uderzenia","Kolor","Producent źródeł światła","Ilość źródeł światła "]
+
 x_Ogolne = 450
 y_Ogolne = 70
 przesuniecie = 150
@@ -246,7 +229,7 @@ l_L24 = Label(okno,text = "Elektryczne",fg="green" ,relief = GROOVE)
 y_Ogolne+=roznicaY
 l_L24.place(x = x_Ogolne, y = y_Ogolne)
 
-tab_Parametry_Elektryczne =["Napięcie znamionowe","Częstotliwość sieciowa "]
+
 
 for x in tab_Parametry_Elektryczne:
     automatyczna_PozycjaWTabeli("l",pozz,x,"Null",x_Ogolne,y_Ogolne,roznicaY,okno,przesuniecie)
@@ -258,7 +241,7 @@ for x in tab_Parametry_Elektryczne:
 x_OgolnePrawe= 750
 y_Ogolne = 70
 pozz = 1
-tab_Parametry_Swietlne=["Moc znamionowa","Strumień świetlny oprawy","Wydajność oprawy","CRI/Ra","Temperatura barwowa","Barwa światła","Kąt rozsyłu"]
+
 
 p_L13 = Label(okno,text = "Świetlne", fg="green", relief = GROOVE)
 p_L13.place(x = 750, y = 70)
@@ -275,7 +258,7 @@ p_L21 = Label(okno,text = "Pozostałe" ,fg="green", relief = GROOVE)
 y_Ogolne+=roznicaY
 p_L21.place(x = x_OgolnePrawe, y = y_Ogolne)
 
-tab_Parametry_Pozostale = ["Waga","Żywotność","Żywotność L90B10","Żywotność L80B10","Żywotność L70B10","Sposób montażu ","Zakres temp. otoczenia "]
+
 
 for x in tab_Parametry_Pozostale:
     automatyczna_PozycjaWTabeli("p",pozz,x,"Null",x_OgolnePrawe,y_Ogolne,roznicaY,okno,przesuniecie)
@@ -289,7 +272,7 @@ p_L29 = Label(okno,text = "Mechaniczne",fg="green" , relief = GROOVE)
 y_Ogolne+=roznicaY
 p_L29.place(x = x_OgolnePrawe, y = y_Ogolne)
 
-tab_Parametry_Mechaniczne=["Materiał obudowy","Materiał klosza","Wymiary (A x B x C mm)","Wymiary (Ø x D mm)"]
+
 
 for x in tab_Parametry_Mechaniczne:
     automatyczna_PozycjaWTabeli("p",pozz,x,"Null",x_OgolnePrawe,y_Ogolne,roznicaY,okno,przesuniecie)
@@ -302,11 +285,11 @@ for x in tab_Parametry_Mechaniczne:
 # automatyczna_PozycjaWTabeli("l",40,"testowanie automatu","NULL",200,500,20,okno,150)
 
 # guziki do kreacji danych
-#btn_submit = Button(okno,text = "Zapisz dane karty ", relief=RAISED, command = zapisz_zebrane_dane)
-#btn_submit.place(x=1000,y=530)
+btn_submit = Button(okno,text = "Zapisz dane karty ", relief=RAISED, command = zapis_Dane)
+btn_submit.place(x=200,y=530)
 
-#btn_pokaz = Button(okno,text = "Pokaz wynik ", relief=RAISED, command = pokazSchemat)
-#btn_pokaz.place(x=920,y=530)
+btn_pokaz = Button(okno,text = "Pokaz wynik ", relief=RAISED, command = pokazSchemat)
+btn_pokaz.place(x=320,y=530)
 
 
 
