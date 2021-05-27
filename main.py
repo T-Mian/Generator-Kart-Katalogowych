@@ -66,12 +66,16 @@ def zapisz_zebrane_dane():
     tab_Swietlne.append(p_E20.get())
     print("Swietlne")
     print(tab_Swietlne)
+    tab_Pozostale.append()
 
 def pokazSchemat():
     schem = Toplevel(okno)
     lab=Label(schem, text=tab_Ogolne)
     lab.pack()
-
+    lab2=Label(schem, text=tab_Swietlne)
+    lab2.pack()
+    lab3=Label(schem, text=tab_Elektryczne)
+    lab3.pack()
 
 
 okno = tkinter.Tk()
@@ -450,6 +454,32 @@ p_E33.insert(0,"NULL")
 p_E33.place(x = 950,y = 470)
 
 
+def automatyczna_PozycjaWTabeli(strona,numer_pozycji,tekst,wsad_wejsciowy,pozycjaStartowaX,pozycjaStartowaY ,roznica_x,roznica_y,root,przesuniecie):
+    st=strona
+    nr = numer_pozycji
+    tx = tekst
+    ws=wsad_wejsciowy
+    pzS_X=pozycjaStartowaX
+    pzS_Y=pozycjaStartowaY
+    x_plus=roznica_x
+    y_plus=roznica_y
+    przez=przesuniecie
+    starLabel= st + "_L"+str(nr)
+    print(starLabel)
+    starEntry =st + "_E"+str(nr)
+    print(starEntry)
+    starLabel = Label(root, text=tx)
+    xx = pzS_X+x_plus
+    yy = pzS_Y+y_plus
+    starLabel.place(x=xx,y=yy)
+    starEntry=Entry(root, bd = 5)
+    starEntry.insert(0,ws)
+    xxx=xx+przez
+    starEntry.place(x=xxx,y=yy)
+    print("Label")
+    print("Entry")
+
+automatyczna_PozycjaWTabeli("l",40,"testowanie automatu","NULL",200,500,20,20,okno,200)
 
 # guziki do kreacji danych
 btn_submit = Button(okno,text = "Zapisz dane karty ", relief=RAISED, command = zapisz_zebrane_dane)
